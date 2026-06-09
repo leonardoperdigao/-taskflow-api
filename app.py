@@ -1,7 +1,9 @@
 from flask import Flask, jsonify
 from app.database import db
 from app.models import User
-from app import routes 
+from app import app
+
+
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///taskflow.db'
 db.init_app(app)
@@ -20,3 +22,4 @@ if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)
 
 
+from app import routes
