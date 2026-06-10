@@ -1,10 +1,13 @@
 from flask import request
 from app.database import db
 from app.models import User
-from app import app  
+from flask import Blueprint
 
-@app.route('/users', methods=['POST'])
+users_bp = Blueprint('users', __name__)
+
+@users_bp.route('/users', methods=['POST'])
 def create_user():
+
     dados = request.get_json()
 
     username = dados.get('username')
