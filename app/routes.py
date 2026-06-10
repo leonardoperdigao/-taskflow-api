@@ -33,3 +33,18 @@ def create_user():
     db.session.commit()
 
     return {"message": "Usuário criado com sucesso!", "id": novo_usuario.id}, 201
+
+
+
+@users_bp.route('/users/<int:id>', methods=['GET'])
+def get_user(id):
+    usuario = User.query.get(id)
+    if not usuario: 
+        return {"error": "ID do usúario não encontrado ou não cadastrado."}, 404
+    else:
+        return {
+            "id" : usuario.id,
+            "username" : usuario.username,
+            "email" : usuario.email
+        }
+        
