@@ -2,6 +2,7 @@ from flask import request
 from app.database import db
 from app.models import User
 from flask import Blueprint
+from werkzeug.security import generate_password_hash
 
 users_bp = Blueprint('users', __name__)
 
@@ -26,8 +27,10 @@ def create_user():
     if not password:
         return {"error": "senha é obrigatória" }, 400
     
+    hash_senha = generate_password_hash(password)
+    
 
-    novo_usuario = User(username=username, email=email, password=password)
+    novo_usuario = User(username=username, email=email, password=hash_senha)
 
     db.session.add(novo_usuario)
     db.session.commit()
