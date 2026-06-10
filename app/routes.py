@@ -64,3 +64,12 @@ def get_atualizar(id):
     
     db.session.commit()
     return {"message": "Alteração concluida com êxito!"}
+
+@users_bp.route('/users/<int:id>', methods=['DELETE'])
+def get_deletar(id):
+    usuario = User.query.get(id)
+    if not usuario: 
+        return {"error": "Usúario não encontrado ou não cadastrado."}, 404
+    db.session.delete(usuario)
+    db.session.commit()
+    return {"message": "Usuário removido com sucesso!"}
