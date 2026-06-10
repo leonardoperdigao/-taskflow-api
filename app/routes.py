@@ -48,3 +48,19 @@ def get_user(id):
             "email" : usuario.email
         }
         
+
+@users_bp.route('/users/<int:id>', methods=['PUT'])
+def get_atualizar(id):
+    usuario = User.query.get(id) 
+    if not usuario: 
+        return {"error": "ID do usúario não encontrado ou não cadastrado."}, 404
+    dados = request.get_json()
+    username = dados.get('username')
+    if username:
+        usuario.username = username
+    email = dados.get('email')
+    if email:
+        usuario.email = email
+    
+    db.session.commit()
+    return {"message": "Alteração concluida com êxito!"}
