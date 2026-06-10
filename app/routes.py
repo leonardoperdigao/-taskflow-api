@@ -2,7 +2,10 @@ from flask import request
 from app.database import db
 from app.models import User
 from flask import Blueprint
-from werkzeug.security import generate_password_hash
+from werkzeug.security import generate_password_hash , check_password_hash
+import jwt
+from datetime import datetime, timedelta 
+from flask import current_app
 
 users_bp = Blueprint('users', __name__)
 
@@ -76,3 +79,37 @@ def get_deletar(id):
     db.session.delete(usuario)
     db.session.commit()
     return {"message": "Usuário removido com sucesso!"}
+
+
+
+@users_bp.route('/login', methods = ['POST'])
+def get_login ():
+    dados = request.get_json()
+    email = dados.get('email') 
+    password = dados.get('password')
+    if not email:
+        return {"erro": "email não encotrado."} , 404 
+    if not password: 
+        return {"erro": "senha não encotrada."} , 404 
+    
+    usuario = User.query.filter_by(email=email).first()
+
+    if not usuario:
+        return {"error": "usuário não encontrado"}, 404
+
+    senha_correta = check_password_hash(usuario.password, password)
+    if not senha_correta: 
+        return {"message":"senha incorreta."}, 401
+    
+
+    token = jwt.encode(
+        {
+        "user_id": usuario.id,
+        "exp" : datetime.utcnow() + timedelta(hours=2) 
+        },
+        current_app.config['SECRET_KEY'],   
+        algorithm="HS256"       
+
+    )
+
+    return {"token" : token}, 200
