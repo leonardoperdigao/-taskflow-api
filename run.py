@@ -1,6 +1,6 @@
 from flask import Flask, jsonify
 from app.database import db
-from app.models import User
+from app.models import User, Project, Task
 from app.routes import users_bp
 from dotenv import load_dotenv
 import os
