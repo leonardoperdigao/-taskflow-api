@@ -3,7 +3,9 @@ from app.database import db
 from app.models import User, Project, Task
 from app.routes import users_bp
 from dotenv import load_dotenv
+from app.projects import projects_bp
 import os
+
 
 load_dotenv()
 
@@ -11,6 +13,7 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///taskflow.db'
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 db.init_app(app)
+app.register_blueprint(projects_bp)
 app.register_blueprint(users_bp)
 
 with app.app_context():

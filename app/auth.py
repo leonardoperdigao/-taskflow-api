@@ -14,7 +14,7 @@ def token_obrigatorio(f):
         except:
             return {"error":"Token inválido."}
 
-        return f(*args, **kwargs)
+        return f(*args, **kwargs, user_id=payload['user_id'])
     return wrapper
 
 
