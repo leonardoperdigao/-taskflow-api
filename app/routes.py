@@ -6,6 +6,7 @@ from werkzeug.security import generate_password_hash , check_password_hash
 import jwt
 from datetime import datetime, timedelta 
 from flask import current_app
+from app.auth import token_obrigatorio
 
 users_bp = Blueprint('users', __name__)
 
@@ -43,6 +44,7 @@ def create_user():
 
 
 @users_bp.route('/users/<int:id>', methods=['GET'])
+@token_obrigatorio
 def get_user(id):
     usuario = User.query.get(id)
     if not usuario: 
@@ -56,6 +58,7 @@ def get_user(id):
         
 
 @users_bp.route('/users/<int:id>', methods=['PUT'])
+@token_obrigatorio
 def get_atualizar(id):
     usuario = User.query.get(id) 
     if not usuario: 
@@ -72,6 +75,7 @@ def get_atualizar(id):
     return {"message": "Alteração concluida com êxito!"}
 
 @users_bp.route('/users/<int:id>', methods=['DELETE'])
+@token_obrigatorio
 def get_deletar(id):
     usuario = User.query.get(id)
     if not usuario: 
