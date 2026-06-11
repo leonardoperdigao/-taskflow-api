@@ -26,6 +26,20 @@ def criar_projetos(user_id):
     db.session.commit() 
 
     return {"message": "Projeto Criado com sucesso!"}
-    
 
-    
+
+
+@projects_bp.route('/projetos', methods=['GET'])
+@token_obrigatorio
+def listar_projetos (user_id):
+    projects_list = []
+    projetos = Project.query.filter_by(user_id=user_id).all()
+    for projeto in projetos:
+        projects_list.append ({
+                "id" : projeto.id, 
+                "name" : projeto.name,
+                "desc" : projeto.desc,
+                "created_at" : projeto.created_at,
+
+        })
+    return {"projetos" : projects_list}
