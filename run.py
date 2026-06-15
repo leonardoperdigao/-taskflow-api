@@ -4,6 +4,7 @@ from app.models import User, Project, Task
 from app.routes import users_bp
 from dotenv import load_dotenv
 from app.projects import projects_bp
+from app.tasks import tasks_bp
 import os
 
 
@@ -15,6 +16,7 @@ app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 db.init_app(app)
 app.register_blueprint(projects_bp)
 app.register_blueprint(users_bp)
+app.register_blueprint(tasks_bp)
 
 with app.app_context():
     db.create_all()
