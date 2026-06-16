@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaskFlow - Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="dashboard-body">
+    <div class="sidebar">
+        <div class="sidebar-logo">TaskFlow</div>
+        <nav>
+            <a href="#">Projetos</a>
+            <a href="#">Tarefas</a>
+            <a href="#">Perfil</a>
+        </nav>
+        <button id="btn-sair">Sair</button>
+    </div>
+
+    <div class="content">
+        <div class="stats">
+            <div class="stat-card">
+                <span class="stat-number">0</span>
+                <span class="stat-label">Projetos</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">0</span>
+                <span class="stat-label">Tarefas</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">0</span>
+                <span class="stat-label">Concluídas</span>
+            </div>
+        </div>
+        <div class="projects-section">
+            <div class="section-header">
+                <h2>Meus Projetos</h2>
+                <button id="btn-add">+ Novo Projeto</button>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <h3>Nome do Projeto</h3>
+                    <p>Descrição do projeto</p>
+                    <span class="badge">Alta</span>
+                    <button class="btn-open">Abrir</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="dashboard.js"></script>
+</body>
+</html>

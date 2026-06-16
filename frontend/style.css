@@ -52,7 +52,6 @@ button {
     border-radius: 6px;
     padding: 12px;
     border: none;
-    width: 100%;
     cursor: pointer;
     color: #ffffff;
     font-size: 16px;
@@ -66,4 +65,133 @@ a {
 
 a:hover {
     text-decoration: underline;
+}
+
+
+.dashboard-body {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.sidebar {
+    width: 240px;
+    background: #0d1117;
+    border-right: 1px solid #21262d;
+    display: flex;
+    flex-direction: column;
+    padding: 24px 16px;
+    gap: 32px;
+}
+
+.sidebar-logo {
+    color: #4a9eff;
+    font-size: 22px;
+    font-weight: 700;
+}
+
+nav {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
+}
+
+nav a {
+    color: #8b949e;
+    padding: 10px 12px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+nav a:hover {
+    background: #161b22;
+    color: #e6edf3;
+}
+
+.content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 40px;
+    background: #0d1117;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 40px;
+}
+
+.stat-card {
+    background: #161b22;
+    border: 1px solid #21262d;
+    border-radius: 12px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.stat-number {
+    color: #e6edf3;
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.stat-label {
+    color: #8b949e;
+    font-size: 14px;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+.project-card {
+    background: #161b22;
+    border: 1px solid #21262d;
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.project-card h3 {
+    color: #e6edf3;
+    font-size: 16px;
+}
+
+.badge {
+    background: #f8514920;
+    color: #f85149;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    width: fit-content;
+}
+
+.btn-open {
+    width: 100%;
+    padding: 8px 16px;
+    margin-top: 8px;
+    font-size: 14px;
+}
+
+.btn-open {
+    width: auto;
+    padding: 8px 16px;
+    margin-top: 8px;
+    font-size: 14px;
 }
