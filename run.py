@@ -5,6 +5,7 @@ from app.routes import users_bp
 from dotenv import load_dotenv
 from app.projects import projects_bp
 from app.tasks import tasks_bp
+from flask_cors import CORS
 import os
 
 
@@ -13,6 +14,7 @@ load_dotenv()
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///taskflow.db'
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
+CORS(app, origins="*")
 db.init_app(app)
 app.register_blueprint(projects_bp)
 app.register_blueprint(users_bp)
