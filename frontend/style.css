@@ -56,6 +56,12 @@ button {
     color: #ffffff;
     font-size: 16px;
     margin-top: 8px;
+    transition: box-shadow 0.2s, opacity 0.2s;
+}
+
+button:hover {
+    box-shadow: 0 0 12px #4a9eff60;
+    opacity: 0.9;
 }
 
 a {
@@ -76,8 +82,8 @@ a:hover {
 
 .sidebar {
     width: 240px;
-    background: #0d1117;
-    border-right: 1px solid #21262d;
+    background: linear-gradient(180deg, #0d1117 0%, #161b22 100%);
+    border-right: 1px solid #4a9eff30;
     display: flex;
     flex-direction: column;
     padding: 24px 16px;
@@ -86,8 +92,10 @@ a:hover {
 
 .sidebar-logo {
     color: #4a9eff;
-    font-size: 22px;
+    font-size: 24px;
     font-weight: 700;
+    letter-spacing: 1px;
+    text-shadow: 0 0 20px #4a9eff50;
 }
 
 nav {
@@ -103,11 +111,15 @@ nav a {
     border-radius: 6px;
     text-decoration: none;
     font-size: 14px;
+    transition: all 0.2s;
+    border-left: 2px solid transparent;
 }
 
 nav a:hover {
     background: #161b22;
+    border-left: 2px solid #4a9eff;
     color: #e6edf3;
+    padding-left: 16px;
 }
 
 .content {
@@ -127,6 +139,7 @@ nav a:hover {
 .stat-card {
     background: #161b22;
     border: 1px solid #21262d;
+    transition: border-color 0.2s, transform 0.2s;
     border-radius: 12px;
     padding: 24px;
     display: flex;
@@ -135,7 +148,7 @@ nav a:hover {
 }
 
 .stat-number {
-    color: #e6edf3;
+    color: #4a9eff;
     font-size: 32px;
     font-weight: 700;
 }
@@ -160,12 +173,18 @@ nav a:hover {
 
 .project-card {
     background: #161b22;
+    transition: border-color 0.2s, transform 0.2s;
     border: 1px solid #21262d;
     border-radius: 12px;
     padding: 20px;
     display: flex;
     flex-direction: column;
     gap: 8px;
+}
+
+.project-card:hover {
+    border-color: #4a9eff50;
+    transform: translateY(-2px);
 }
 
 .project-card h3 {
@@ -181,17 +200,22 @@ nav a:hover {
     font-size: 12px;
     width: fit-content;
 }
-
-.btn-open {
-    width: 100%;
+#btn-sair {
+    width: auto !important;
     padding: 8px 16px;
     margin-top: 8px;
     font-size: 14px;
+    align-self: flex-start;
 }
 
 .btn-open {
-    width: auto;
+    width: auto !important;
     padding: 8px 16px;
     margin-top: 8px;
     font-size: 14px;
+     align-self: flex-start;
+}
+
+.projects-section h2 {
+    color: #e6edf3;
 }
