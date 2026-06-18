@@ -219,3 +219,59 @@ nav a:hover {
 .projects-section h2 {
     color: #e6edf3;
 }
+
+#modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(4px);
+    
+}
+
+.modal-card {
+    background: #161b22;
+    border: 1px solid #4a9eff40;
+    border-radius: 12px;
+    box-shadow: 0 0 30px #4a9eff30;
+    padding: 32px;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.modal-card h2 {
+    color: #e6edf3;
+    margin-bottom: 8px;
+}
+
+
+#toast {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background: #161b22;
+    border: 1px solid #3fb950;
+    border-radius: 8px;
+    padding: 16px 20px;
+    color: #e6edf3;
+    min-width: 250px;
+}
+
+#toast-bar {
+    height: 3px;
+    background: #3fb950;
+    margin-top: 10px;
+    animation: shrink 3s linear forwards;
+}
+
+@keyframes shrink {
+    from { width: 100%; }
+    to { width: 0%; }
+}

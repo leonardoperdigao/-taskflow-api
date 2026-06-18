@@ -37,10 +37,25 @@
                 <h2>Meus Projetos</h2>
                 <button id="btn-add">+ Novo Projeto</button>
             </div>
-            <div class="projects-grid" id="projects-grid">
-            </div>
+            <div class="projects-grid" id="projects-grid"></div>
         </div>
     </div>
+
+    <div id="modal" style="display:none">
+        <div class="modal-card">
+            <h2>Novo Projeto</h2>
+            <input type="text" id="nome-projeto" placeholder="Nome do projeto">
+            <input type="text" id="desc-projeto" placeholder="Descrição">
+            <button id="btn-criar">Criar</button>
+            <button id="btn-cancelar">Cancelar</button>
+        </div>
+    </div>
+
+    <div id="toast" style="display:none">
+        <p>✅Projeto criado com sucesso!</p>
+        <div id="toast-bar"></div>
+    </div>
+
     <script src="dashboard.js"></script>
 </body>
 </html>
