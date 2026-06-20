@@ -2,7 +2,7 @@ document.getElementById('btn-login').addEventListener('click', async () => {
     const email = document.getElementById('email').value
     const senha = document.getElementById('senha').value
     
-    const response = await fetch('https://special-goldfish-jjpw4p7w599vc5gqg-5000.app.github.dev/login', {
+    const response = await fetch('http://localhost:5000/login', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

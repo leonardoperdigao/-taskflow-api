@@ -3,7 +3,7 @@ let projetos = []
 async function carregarProjetos () {
     const token = localStorage.getItem('token')
     if (!token) {window.location.href = 'index.html'}
-    const response = await fetch('https://special-goldfish-jjpw4p7w599vc5gqg-5000.app.github.dev/projetos' , { headers: { 'Authorization': 'Bearer ' + token }})
+    const response = await fetch('http://localhost:5000/projetos' , { headers: { 'Authorization': 'Bearer ' + token }})
     const data = await response.json()
     projetos = data.projetos
     const grid = document.getElementById('projects-grid')
@@ -22,7 +22,7 @@ async function carregarProjetos () {
     btn.addEventListener('click', async () => {
         const id = btn.dataset.id
         const token = localStorage.getItem('token')
-        const del = await fetch(`https://special-goldfish-jjpw4p7w599vc5gqg-5000.app.github.dev/projetos/${id}`, {
+        const del = await fetch(`http://localhost:5000/projetos/${id}`, {
         method: 'DELETE',   
         headers: { 'Authorization': 'Bearer ' + token }
     })
@@ -53,7 +53,7 @@ btnCriar.addEventListener('click', async () => {
         alert('Já existe um projeto com esse nome!')
     return
 }
-    const response = await fetch('https://special-goldfish-jjpw4p7w599vc5gqg-5000.app.github.dev/projetos', {
+    const response = await fetch('http://localhost:5000/projetos', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -72,3 +72,9 @@ carregarProjetos()
 
 
 carregarProjetos()
+
+
+document.getElementById('btn-sair').addEventListener('click', () => {
+    localStorage.removeItem('token')
+    window.location.href = 'index.html'
+})  
