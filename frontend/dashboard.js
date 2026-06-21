@@ -1,18 +1,33 @@
 let projetos = []
+let totalTarefas = 0
+let totalConcluidas = 0
 
 async function carregarProjetos () {
     const token = localStorage.getItem('token')
     if (!token) {window.location.href = 'index.html'}
+    totalTarefas = 0
+    totalConcluidas = 0
     const response = await fetch('http://localhost:5000/projetos' , { headers: { 'Authorization': 'Bearer ' + token }})
     const data = await response.json()
     projetos = data.projetos
+    document.getElementById('stat-projetos').textContent = data.projetos.length
+    for (const projeto of data.projetos) {
+    const resTask = await fetch(`http://localhost:5000/projetos/${projeto.id}/tasks`, {
+        headers: { 'Authorization': 'Bearer ' + token }
+    })
+    const dataTasks = await resTask.json()
+    totalTarefas += dataTasks.tasks.length
+    totalConcluidas += dataTasks.tasks.filter(t => t.status === 'done').length
+    }
+    document.getElementById('stat-tarefas').textContent = totalTarefas
+    document.getElementById('stat-concluidas').textContent = totalConcluidas
     const grid = document.getElementById('projects-grid')
     grid.innerHTML = '' 
     data.projetos.forEach(projeto =>{
         grid.innerHTML += `
             <div class="project-card">
             <h3>${projeto.name}</h3>
-            <p>${projeto.desc}</p>
+            <p>${projeto.desc || 'Sem descrição'}</p>
             <button class="btn-deletar" data-id="${projeto.id}">Deletar</button>
             </div>
         `
@@ -48,6 +63,10 @@ btnCriar.addEventListener('click', async () => {
     const proname = document.getElementById('nome-projeto').value
     const descname = document.getElementById('desc-projeto').value
     const token = localStorage.getItem('token')
+    if (!proname) {
+    alert('Nome do projeto é obrigatório!')
+    return
+}
     const existe = projetos.find(p => p.name === proname)
     if (existe) {
         alert('Já existe um projeto com esse nome!')
@@ -61,6 +80,10 @@ btnCriar.addEventListener('click', async () => {
         },
         body: JSON.stringify({ name: proname, desc: descname})
     })
+    if (!response.ok) {
+        alert('Erro ao criar projeto!')
+        return
+    }
 modal.style.display = 'none'
 carregarProjetos()
     const toast = document.getElementById('toast')
